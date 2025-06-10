@@ -85,6 +85,13 @@ namespace Project_Malshinon.DAL
                 Console.WriteLine("---");
             }
         }
+
+        public static object ExecuteScalar(string sql, string connectionString = null)
+        {
+            var conn = Connect(connectionString);
+            var cmd = new MySqlCommand(sql, conn);
+            return cmd.ExecuteScalar();
+        }
     }
 }
 

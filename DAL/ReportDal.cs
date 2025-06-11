@@ -17,8 +17,10 @@ namespace Project_Malshinon.DAL
               $"VALUES('{ReporterId}', '{TargetId}', '{ReportText}', '{SubmittedAt:yyyy-mm-dd HH:mm:ss}')";
 
             DBConnection.Execute(sql);
-            var updateSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {ReporterId}";
-            DBConnection.Execute(updateSql);
+            var updateeRporterSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {ReporterId}";
+            var updateTargetSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {TargetId}";
+            DBConnection.Execute(updateeRporterSql);
+            DBConnection.Execute(updateTargetSql);
         }
 
 

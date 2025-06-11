@@ -26,13 +26,13 @@ namespace Project_Malshinon.Services
                 switch (chois)
                 {
                     case "1":
-                        AddData.AddDataToReport();
+                        ReportService.AddDataToReport();
                     break;
 
                     //case "2":
 
                     case "3":
-                       AddData.ShowSecretName();
+                       PersonService.ShowSecretName();
                         break;
 
                     case "5":

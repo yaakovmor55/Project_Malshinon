@@ -38,7 +38,7 @@ namespace Project_Malshinon.DAL
                 return id2;
 
             
-            AddData.AddNewPerson(codeNameOrFullName);
+            PersonService.AddNewPerson(codeNameOrFullName);
 
             
             string sqlAfterInsert = $"SELECT Id FROM people WHERE SecretCode = '{codeNameOrFullName.Replace("'", "''")}' OR FullName = '{codeNameOrFullName.Replace("'", "''")}'";

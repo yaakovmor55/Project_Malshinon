@@ -8,6 +8,6 @@ namespace Project_Malshinon.DAL
 {
     internal class AlertsDal
     {
-
+        
     }
 }

@@ -23,32 +23,42 @@ namespace Project_Malshinon.DAL
             DBConnection.Execute(sql);
         }
 
-        public static object CheackIfExsist(string CodeNameOrFullName)
+        public static object CheackIfExsist(string codeNameOrFullName)
         {
-            string sqlCodeName = $"SELECT Id FROM people WHERE SecretCode = '{CodeNameOrFullName}'";
+            
+            string sqlCodeName = $"SELECT Id FROM people WHERE SecretCode = '{codeNameOrFullName.Replace("'", "''")}'";
             var id = DBConnection.ExecuteScalar(sqlCodeName);
             if (id != null)
-            {
                 return id;
-            }
-            else if (id == null)
-            {
-                string sqlFullName = $"SELECT Id FROM people WHERE FullName = '{CodeNameOrFullName}'";
-                var id2 = DBConnection.ExecuteScalar(sqlCodeName);
-                if (id != null)
-                {
-                    return id2;
-                }              
-            }
-            AddData.AddNewPerson(CodeNameOrFullName);
-            CheackIfExsist(CodeNameOrFullName);
-            return null;
 
+            
+            string sqlFullName = $"SELECT Id FROM people WHERE FullName = '{codeNameOrFullName.Replace("'", "''")}'";
+            var id2 = DBConnection.ExecuteScalar(sqlFullName);
+            if (id2 != null)
+                return id2;
+
+            
+            AddData.AddNewPerson(codeNameOrFullName);
+
+            
+            string sqlAfterInsert = $"SELECT Id FROM people WHERE SecretCode = '{codeNameOrFullName.Replace("'", "''")}' OR FullName = '{codeNameOrFullName.Replace("'", "''")}'";
+            var newId = DBConnection.ExecuteScalar(sqlAfterInsert);
+            return newId;
         }
-        public static void ShowSecretNameByCodeName(string SecretName)
+
+        public static object ShowSecretNameByCodeName(string FullName)
         {
-            string sql = $"SELECT SecretCode FROM people WHERE SecretCode = '{SecretName}'";
-            DBConnection.ExecuteScalar(sql);
+            string safeFullName = FullName.Replace("'", "''");
+
+            string sql = $"SELECT SecretCode FROM people WHERE FullName = '{safeFullName}'";
+            return DBConnection.ExecuteScalar(sql);
+        }
+
+        public static bool CheackIfFullNameExsist(string fullName)
+        {
+            var sql = $"SELECT Id FROM people WHERE FullName = '{fullName.Replace("'", "''")}'";
+            var exsist = DBConnection.ExecuteScalar(sql);
+            return exsist != null;
         }
     }
 }

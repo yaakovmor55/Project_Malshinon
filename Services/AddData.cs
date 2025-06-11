@@ -17,6 +17,7 @@ namespace Project_Malshinon.Services
             
 
             Console.Write("Enter Full Name or Secret Name: ");
+
             string TargetName = Console.ReadLine();
             var TargetId = Convert.ToInt32(PersonDal.CheackIfExsist(TargetName));
 
@@ -51,9 +52,19 @@ namespace Project_Malshinon.Services
 
         public static void ShowSecretName()
         {
-            Console.Write("Enter the secret name: ");
-            var SecretCode = Console.ReadLine();
-            PersonDal.ShowSecretNameByCodeName(SecretCode); 
+            Console.Write("Enter the Full name: ");
+            var fullName = Console.ReadLine();
+
+
+            if (PersonDal.CheackIfFullNameExsist(fullName))
+            {
+                var secretCode = PersonDal.ShowSecretNameByCodeName(fullName);
+                Console.WriteLine($"Secret code: {secretCode}\n");
+            }
+            else
+            {
+                Console.WriteLine("This name is not in the table\n");
+            }
         }
 
 

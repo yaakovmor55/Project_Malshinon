@@ -33,9 +33,13 @@ namespace Project_Malshinon.Services
 
                     case "3":
                        AddData.ShowSecretName();
-                        break; 
+                        break;
 
+                    case "5":
+                        return;
+                        
                     default:
+                        Console.WriteLine("Invalid selection Enter a number between 1 and 5\n");
                         break;
 
                 }

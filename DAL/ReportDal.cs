@@ -18,7 +18,7 @@ namespace Project_Malshinon.DAL
 
             DBConnection.Execute(sql);
             var updateeRporterSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {ReporterId}";
-            var updateTargetSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {TargetId}";
+            var updateTargetSql = $"UPDATE people SET num_mentions = num_mentions + 1 WHERE Id = {TargetId}";
             DBConnection.Execute(updateeRporterSql);
             DBConnection.Execute(updateTargetSql);
         }

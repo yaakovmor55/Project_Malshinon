@@ -107,6 +107,7 @@
     <Compile Include="Services\Menu.cs" />
     <Compile Include="Services\PersonService.cs" />
     <Compile Include="Services\ReportService.cs" />
+    <Compile Include="Utils\Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -115,7 +116,6 @@
   <ItemGroup>
     <Folder Include="CSV\" />
     <Folder Include="Tests\" />
-    <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -26,16 +26,16 @@ namespace Project_Malshinon.DAL
         public static object CheackIfExsist(string codeNameOrFullName)
         {
             
-            string sqlCodeName = $"SELECT Id FROM people WHERE SecretCode = '{codeNameOrFullName.Replace("'", "''")}'";
+            string sqlCodeName = $"SELECT Id FROM people WHERE SecretCode = '{codeNameOrFullName.Replace("'", "''")}' OR FullName = '{codeNameOrFullName.Replace("'", "''")}'";
             var id = DBConnection.ExecuteScalar(sqlCodeName);
             if (id != null)
                 return id;
 
             
-            string sqlFullName = $"SELECT Id FROM people WHERE FullName = '{codeNameOrFullName.Replace("'", "''")}'";
-            var id2 = DBConnection.ExecuteScalar(sqlFullName);
-            if (id2 != null)
-                return id2;
+            //string sqlFullName = $"SELECT Id FROM people WHERE FullName = '{codeNameOrFullName.Replace("'", "''")}'";
+            //var id2 = DBConnection.ExecuteScalar(sqlFullName);
+            //if (id2 != null)
+            //    return id2;
 
             
             PersonService.AddNewPerson(codeNameOrFullName);

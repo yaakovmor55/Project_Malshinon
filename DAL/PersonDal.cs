@@ -32,12 +32,6 @@ namespace Project_Malshinon.DAL
                 return id;
 
             
-            //string sqlFullName = $"SELECT Id FROM people WHERE FullName = '{codeNameOrFullName.Replace("'", "''")}'";
-            //var id2 = DBConnection.ExecuteScalar(sqlFullName);
-            //if (id2 != null)
-            //    return id2;
-
-            
             PersonService.AddNewPerson(codeNameOrFullName);
 
             

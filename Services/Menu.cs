@@ -29,10 +29,15 @@ namespace Project_Malshinon.Services
                         ReportService.AddDataToReport();
                     break;
 
-                    //case "2":
+                    case "2":
+                        CSV.ImportCsv();
+                        break;
 
                     case "3":
                        PersonService.ShowSecretName();
+                        break;
+                    case "4":
+                        AlertService.AddAlertOnTarget();
                         break;
 
                     case "5":

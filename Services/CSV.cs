@@ -35,7 +35,7 @@ namespace Project_Malshinon.Services
                 int targetId = Convert.ToInt32(PersonDal.CheackIfExsist(target));
                 ReportDal.AddReport(reporterId, targetId, text);
                 count++;
-                //AlertsDAL.CheckAndTriggerAlerts(targetId);
+                AlertsDal.CheckAndTriggerAlerts(targetId);
             }
             Logger.Log($"CSVImport: Imported {count} reports from {path}");
             Console.WriteLine($"Imported {count} reports.\n");

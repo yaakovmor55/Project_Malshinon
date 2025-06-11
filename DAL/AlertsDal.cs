@@ -9,11 +9,18 @@ namespace Project_Malshinon.DAL
 {
     internal class AlertsDal
     {
-        public static void AddAlert(int TargetId, DateTime WindowStart, DateTime WindowEnd, string Reason, DateTime CreatedAt)
+        public static void AddAlert(int TargetId,  string Reason)
         {
-            string sql = $"INSERT INTO alerts(TargetId, WindowStart, WindowEnd, Reason, CreatedAt)" +
-                $"VALUES('{TargetId}', '{WindowStart}', '{WindowEnd}', '{Reason}', '{CreatedAt}')";
+            DateTime CreatedAt = DateTime.Now;
+            string sql = $"INSERT INTO alerts(TargetId, Reason, CreatedAt)" +
+                $"VALUES({TargetId}, '{Reason}', '{CreatedAt}')";
             DBConnection.Execute(sql);
+        }
+
+        public static int CheckAndTriggerAlerts(int targetId)
+        {
+            string sql = $"SELECT num_reports FROM people WHERE Id = {targetId}";
+            return Convert.ToInt32(DBConnection.ExecuteScalar(sql));
         }
     }
 }

@@ -13,12 +13,13 @@ namespace Project_Malshinon.DAL
     {
         
 
-        public static void AddPerson(string FullName, string SecretCode, string type)
+        public static void AddPerson(string FullName)
         {
             int num_reports = 0;
             int num_mentions = 0;
-            var sql = $"INSERT INTO people(FullName, SecretCode, type, num_reports, num_mentions)" +
-                $"VALUES('{FullName}', '{SecretCode}', '{type}', '{num_reports}', '{num_mentions}')"; 
+            string SecretCode = Guid.NewGuid().ToString("N").Substring(0,8);
+            var sql = $"INSERT INTO people(FullName, SecretCode, num_reports, num_mentions)" +
+                $"VALUES('{FullName}', '{SecretCode}', '{num_reports}', '{num_mentions}')"; 
 
             DBConnection.Execute(sql);
         }
@@ -54,5 +55,19 @@ namespace Project_Malshinon.DAL
             var exsist = DBConnection.ExecuteScalar(sql);
             return exsist != null;
         }
+
+        public static void SetTargetType(int TargetId)
+        {
+            string SqlUpdate = $"UPDATE people SET type = 'Target' WHERE Id = {TargetId};";
+            DBConnection.Execute(SqlUpdate);
+        }
+
+        public static void SetReporterType(int reporterId)
+        {
+            string SqlUpdate = $"UPDATE people SET type = 'Reporter' WHERE Id = {reporterId};";
+            DBConnection.Execute(SqlUpdate);
+        }
     }
+
+
 }

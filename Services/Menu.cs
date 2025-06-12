@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Project_Malshinon.DAL;
 
@@ -11,15 +12,20 @@ namespace Project_Malshinon.Services
     {
         public static void Start()
         {
-            Console.WriteLine("Malshinon - Community Intel Reporting System\n");
+            
             while (true)
             {
-                Console.WriteLine("1. Submit Report");
-                Console.WriteLine("2. Import Repots From CSV");
-                Console.WriteLine("3. Show Secret Code By Name");
-                Console.WriteLine("4. Analysis Dashboard");
-                Console.WriteLine("5. Exit");
-
+                Console.OutputEncoding = Encoding.UTF8;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Thread.Sleep(1000);
+                Console.Clear();
+                Console.WriteLine("\t\t\t===== 🤖Malshinon - Community Intel Reporting System🤖 ====\n");
+                Console.WriteLine("\t\t\t\t1. Submit Report 💀");
+                Console.WriteLine("\t\t\t\t2. Import Repots From CSV 🧐");
+                Console.WriteLine("\t\t\t\t3. Show Secret Code By Name 🤔");
+                Console.WriteLine("\t\t\t\t4. Analysis Dashboard");
+                Console.WriteLine("\t\t\t\t5. Exit 📤");
+                Console.Write("\t\t\t\t");
                 string chois = Console.ReadLine();
 
 
@@ -37,7 +43,7 @@ namespace Project_Malshinon.Services
                        PersonService.ShowSecretName();
                         break;
                     case "4":
-                        AlertService.AddAlertOnTarget();
+                        AlertService.ShowDiagnosticOnPerson();
                         break;
 
                     case "5":

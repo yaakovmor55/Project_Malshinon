@@ -15,12 +15,14 @@ namespace Project_Malshinon.DAL
             string sql = $"INSERT INTO alerts(TargetId, Reason, CreatedAt)" +
                 $"VALUES({TargetId}, '{Reason}', '{CreatedAt}')";
             DBConnection.Execute(sql);
+            
         }
 
         public static int CheckAndTriggerAlerts(int targetId)
         {
-            string sql = $"SELECT num_reports FROM people WHERE Id = {targetId}";
+            string sql = $"SELECT num_mentions FROM people WHERE Id = {targetId}";
             return Convert.ToInt32(DBConnection.ExecuteScalar(sql));
         }
     }
+
 }

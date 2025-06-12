@@ -11,10 +11,10 @@ namespace Project_Malshinon.DAL
     {
         public static void AddReport(int ReporterId, int TargetId, string ReportText)
         {
-            
-            DateTime SubmittedAt = DateTime.Now;
+
+            string SubmittedAt = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             var sql = $"INSERT INTO reports(ReporterId, TargetId, ReportText, SubmittedAt)" +
-              $"VALUES('{ReporterId}', '{TargetId}', '{ReportText}', '{SubmittedAt:yyyy-mm-dd HH:mm:ss}')";
+              $"VALUES('{ReporterId}', '{TargetId}', '{ReportText.Replace("'", "''")}', '{SubmittedAt}')";
 
             DBConnection.Execute(sql);
             var updateeRporterSql = $"UPDATE people SET num_reports = num_reports + 1 WHERE Id = {ReporterId}";

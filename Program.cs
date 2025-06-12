@@ -13,6 +13,7 @@ namespace Project_Malshinon
         static void Main(string[] args)
         {
             Menu.Start();
+
         }
     }
 }

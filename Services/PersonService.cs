@@ -1,6 +1,9 @@
 ﻿using Project_Malshinon.DAL;
+using Project_Malshinon.Utils;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,13 +34,12 @@ namespace Project_Malshinon.Services
             var parts = CodeNameOrFullName.Split();
             if (parts.Length >= 2)
             {
-                Console.Write("Enter Secret Name: ");
-                string CodeName = Console.ReadLine();
 
-                Console.Write("Enter the type: ");
-                string type = Console.ReadLine();
 
-                PersonDal.AddPerson(CodeNameOrFullName, CodeName, type);
+
+
+                PersonDal.AddPerson(CodeNameOrFullName);
+                Logger.Log($"New Person: Name: {CodeNameOrFullName} ");
 
             }
             else
@@ -45,9 +47,9 @@ namespace Project_Malshinon.Services
                 Console.Write("Enter Full Name: ");
                 string FullName = Console.ReadLine();
 
-                Console.Write("Enter the type: ");
-                string type1 = Console.ReadLine();
-                PersonDal.AddPerson(FullName, CodeNameOrFullName, type1);
+
+                PersonDal.AddPerson(FullName);
+                Logger.Log($"New Person: Name: {FullName}");
             }
         }
     }
